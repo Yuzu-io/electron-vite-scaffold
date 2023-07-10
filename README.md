@@ -1,4 +1,4 @@
-# social-contact-client-vite
+# electron-vite-scaffold
 
 An Electron application with Vue and TypeScript
 

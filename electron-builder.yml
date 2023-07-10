@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: social-contact-client-vite
+productName: electron-vite-scaffold
 directories:
   buildResources: build
 files:
@@ -13,7 +13,7 @@ asarUnpack:
   - resources/**
 afterSign: build/notarize.js
 win:
-  executableName: social-contact-client-vite
+  executableName: electron-vite-scaffold
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
