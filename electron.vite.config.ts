@@ -4,7 +4,14 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],
+    build: {
+      rollupOptions: {
+        input: {
+          index: resolve(__dirname, 'src/main/index.ts')
+        }
+      }
+    }
   },
   preload: {
     plugins: [externalizeDepsPlugin()]
@@ -12,9 +19,19 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src')
+        '@renderer': resolve('src/renderer')
       }
     },
-    plugins: [vue()]
+    plugins: [vue()],
+    build: {
+      rollupOptions: {
+        input: {
+          // index:'src/renderer/index/main.ts',
+          // auth:'src/renderer/auth/main.ts',
+          index: resolve(__dirname, 'src/renderer/index.html'),
+          auth: resolve(__dirname, 'src/renderer/auth.html'),
+        }
+      }
+    }
   }
 })
