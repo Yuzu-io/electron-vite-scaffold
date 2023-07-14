@@ -39,7 +39,7 @@ export default class CommonWindow {
         this.loadUrl(process.env['ELECTRON_RENDERER_URL'])
       } else {
         // 注意
-        this.win.loadFile(join(__dirname, '../renderer/index.html'))
+        this.win.loadFile(join(__dirname, `../renderer/${this.windowType}.html`))
       }
 
       this.win?.on('close', () => {
@@ -52,8 +52,6 @@ export default class CommonWindow {
 
   private loadUrl(url: string): Promise<void> {
     if (!this.win) return Promise.reject()
-    console.log(this.loadUrlFormatter(trimEnd(url, '/')));
-
     return this.win.loadURL(this.loadUrlFormatter(trimEnd(url, '/')))
   }
 
