@@ -1,7 +1,8 @@
 import { ElectronWindowType } from '../window-type'
 import CommonWindow from './common'
 import { join } from 'path'
-import icon from '../../../resources/icon.png?asset'
+// import icon from '../../../resources/icon.png?asset'
+const icon = join(__dirname,'../../../resources/icon.png')
 
 export default class MainWindow extends CommonWindow {
   constructor() {
@@ -18,7 +19,7 @@ export default class MainWindow extends CommonWindow {
         preload: join(__dirname, '../preload/index.js'),
         sandbox: false
       },
-      windowType: ElectronWindowType.Main,
+      windowType: ElectronWindowType.Index,
       loadUrl: (host) => `${host}/`
     })
   }
