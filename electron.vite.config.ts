@@ -12,7 +12,9 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer')
+        '@renderer': resolve('src/renderer'),
+        '@preload': resolve('src/preload'),
+        '@main': resolve('src/main'),
       }
     },
     plugins: [vue()],
