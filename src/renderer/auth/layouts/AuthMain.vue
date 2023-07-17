@@ -4,29 +4,29 @@
     <div class="top">
       <div class="top_title">social</div>
       <div class="top_operation">
-        <!-- <div class="tools">
-            <el-icon><i-ep-Tools /></el-icon>
-          </div> -->
         <!-- 退出按钮 -->
-        <div class="close-bold" @click="closeWindow">
-          <el-icon><i-ep-CloseBold /></el-icon>
-        </div>
+        <div class="close-bold" @click="closeWindow">X</div>
       </div>
     </div>
     <!-- 内容区 -->
     <div class="content">
+      <button @click="switchWindow">切换窗口</button>
       <router-view />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ipcRenderer } from "electron";
+const { ipcRenderer } = window.electron
 
 // 关闭窗口
 const closeWindow = () => {
-  ipcRenderer.send("close-window");
-};
+  ipcRenderer.send('quit-application')
+}
+// 切换窗口
+const switchWindow = () => {
+  ipcRenderer.send('switch-window', 'main')
+}
 </script>
 
 <style lang="scss" scoped>

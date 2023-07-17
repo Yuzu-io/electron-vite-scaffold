@@ -1,13 +1,28 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
-// import icon from '../../resources/icon.png?asset'
 
+// 引入模块
+import { quitWindow } from './modules/close';
+import { switchWindow } from './modules/switch';
+
+import CommonWindow from './window/common';
 import AuthWindow from './window/authWindow';
+import { ElectronWindowType } from './window-type';
+
+let win: CommonWindow | null = null;
 
 function createWindow(): void {
   // Create the browser window.
-  new AuthWindow()
+  win = new AuthWindow()
+
+  // 模块
+  quitWindow();
 }
+
+// 切换窗口
+ipcMain.on('switch-window', (event: IpcMainEvent, winType: ElectronWindowType) => {
+  switchWindow(winType, win?.getWindow() as BrowserWindow);
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
