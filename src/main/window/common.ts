@@ -1,4 +1,4 @@
-import { BrowserWindow,shell, type BrowserWindowConstructorOptions } from 'electron'
+import { BrowserWindow, shell, type BrowserWindowConstructorOptions } from 'electron'
 import { ElectronWindowType } from '../window-type'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
@@ -44,7 +44,7 @@ export default class CommonWindow {
 
       this.win?.on('close', () => {
         // 窗口退出时发送
-        ;(this.win as BrowserWindow).webContents.send('window-close')
+        ; (this.win as BrowserWindow).webContents.send('window-close')
         this.win = null // 删除引用，释放内存，防止内存泄露
       })
     } else Promise.reject(new Error('Variable window is undefined.'))
