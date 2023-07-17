@@ -21,7 +21,7 @@ export default defineConfig({
     build: {
       rollupOptions: {
         input: {
-          index: resolve(__dirname, 'src/renderer/index.html'),
+          main: resolve(__dirname, 'src/renderer/main.html'),
           auth: resolve(__dirname, 'src/renderer/auth.html'),
         }
       }
