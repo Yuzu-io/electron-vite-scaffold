@@ -7,24 +7,18 @@ const routes: Array<RouteRecordRaw> = [
     name: "AuthLayout",
     component: () => import("@renderer/auth/layouts/AuthMain.vue"),
     meta: { bypassLogin: true, window: ElectronWindowType.Auth },
-    // children: [
-    //   {
-    //     path: "/",
-    //     redirect: "login",
-    //   },
-    //   {
-    //     path: "login",
-    //     name: "AuthLoginIndex",
-    //     component: () => import("@renderer/auth/views/login/Index.vue"),
-    //     meta: { title: "登录" },
-    //   },
-    //   {
-    //     path: "register",
-    //     name: "AuthRegisterIndex",
-    //     component: () => import("@renderer/auth/views/register/Index.vue"),
-    //     meta: { title: "注册" },
-    //   },
-    // ],
+    children: [
+      {
+        path: "/",
+        redirect: "index",
+      },
+      {
+        path: "index",
+        name: "Index",
+        component: () => import("@renderer/auth/views/index/index.vue"),
+        meta: { title: "首页" },
+      },
+    ]
   },
 ]
 
