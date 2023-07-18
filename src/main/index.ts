@@ -21,7 +21,7 @@ function createWindow(): void {
 
 // 切换窗口
 ipcMain.on('switch-window', (event: IpcMainEvent, winType: ElectronWindowType) => {
-  switchWindow(winType, win?.getWindow() as BrowserWindow);
+  win = switchWindow(winType, win?.getWindow() as BrowserWindow);
 })
 
 // This method will be called when Electron has finished
