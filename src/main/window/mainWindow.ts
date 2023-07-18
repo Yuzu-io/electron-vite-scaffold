@@ -1,13 +1,15 @@
 import { ElectronWindowType } from '../window-type'
 import CommonWindow from './common'
 import { join } from 'path'
-import icon from '../../../resources/icon.png?asset'
+
+const icon = join(__dirname, '../../../resources/icon.png')
 
 export default class MainWindow extends CommonWindow {
   constructor() {
     super({
       width: 1200,
       height: 800,
+      show: false,
       frame: false, // 无边框
       ...(process.platform === 'linux' ? { icon } : {}),
       webPreferences: {
@@ -19,7 +21,7 @@ export default class MainWindow extends CommonWindow {
         sandbox: false
       },
       windowType: ElectronWindowType.Main,
-      loadUrl: (host) => `${host}/`
+      loadUrl: (host) => `${host}/index.html`
     })
   }
 }
