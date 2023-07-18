@@ -4,9 +4,9 @@ import {ElectronWindowType} from '@main/window-type';
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "AuthLayout",
-    component: () => import("@renderer/auth/layouts/AuthMain.vue"),
-    meta: { bypassLogin: true, window: ElectronWindowType.Auth },
+    name: "AppMain",
+    component: () => import("@renderer/main/layouts/AppMain.vue"),
+    meta: { bypassLogin: true, window: ElectronWindowType.Main },
     children: [
       {
         path: "/",
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "index",
         name: "Index",
-        component: () => import("@renderer/auth/views/index/index.vue"),
+        component: () => import("@renderer/main/views/index/index.vue"),
         meta: { title: "首页" },
       },
     ]

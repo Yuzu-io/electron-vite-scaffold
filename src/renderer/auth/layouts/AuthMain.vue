@@ -10,7 +10,6 @@
     </div>
     <!-- 内容区 -->
     <div class="content">
-      <button @click="switchWindow">切换窗口</button>
       <router-view />
     </div>
   </div>
@@ -22,10 +21,6 @@ const { ipcRenderer } = window.electron
 // 关闭窗口
 const closeWindow = () => {
   ipcRenderer.send('quit-application')
-}
-// 切换窗口
-const switchWindow = () => {
-  ipcRenderer.send('switch-window', 'main')
 }
 </script>
 
