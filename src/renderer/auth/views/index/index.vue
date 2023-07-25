@@ -9,7 +9,7 @@ const { ipcRenderer } = window.electron
 
 // 切换窗口
 const switchWindow = () => {
-  ipcRenderer.send('switch:window', 'main')
+  ipcRenderer.send('switch:window', 'main', { token: '1111' })
 }
 </script>
 
