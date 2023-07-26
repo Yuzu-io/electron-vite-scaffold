@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainEvent, IpcMainInvokeEvent } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 
 // 引入模块
@@ -8,7 +8,6 @@ import CommonWindow from './window/common';
 import { ElectronWindowType } from './window-type';
 import WindowFactory from './window';
 import { quitWindow } from './modules/close';
-import { transferData } from './modules/transfer';
 
 let win: CommonWindow | null = null;
 
@@ -21,9 +20,16 @@ function createWindow(): void {
 quitWindow()
 
 // 切换窗口
-ipcMain.on('switch:window', (_event: IpcMainEvent, winType: ElectronWindowType, data: any | null) => {
+ipcMain.on('switch:window', (_event: IpcMainEvent, winType: ElectronWindowType) => {
   win = switchWindow(winType, win?.getWindow() as BrowserWindow);
-  transferData(win?.getWindow() as BrowserWindow, data)
+})
+
+let token: string | null = null
+ipcMain.handle('push:transfer:data', async (_event: IpcMainInvokeEvent, data: string) => {
+  token = data
+})
+ipcMain.handle('pull:transfer:data', async () => {
+  return token
 })
 
 // This method will be called when Electron has finished

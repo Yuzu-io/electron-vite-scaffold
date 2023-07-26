@@ -7,12 +7,15 @@
 </template>
 
 <script setup lang="ts">
-import { IpcRendererEvent } from 'electron'
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 const { ipcRenderer } = window.electron
 
 const tokenData = reactive({
   token: ''
+})
+
+onMounted(() => {
+  getData()
 })
 
 // 切换窗口
@@ -20,11 +23,9 @@ const switchWindow = () => {
   ipcRenderer.send('switch:window', 'auth')
 }
 
-ipcRenderer.on('pull:transfer:data', (_event: IpcRendererEvent, data: any) => {
-  console.log(data)
-
-  tokenData.token = data.token
-})
+const getData = async () => {
+  tokenData.token = await ipcRenderer.invoke('pull:transfer:data')
+}
 </script>
 
 <style scoped></style>
