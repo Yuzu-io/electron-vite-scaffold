@@ -1,27 +1,35 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainEvent, IpcMainInvokeEvent } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 
 // 引入模块
-import { quitWindow } from './modules/close';
 import { switchWindow } from './modules/switch';
 
 import CommonWindow from './window/common';
-import AuthWindow from './window/authWindow';
 import { ElectronWindowType } from './window-type';
+import WindowFactory from './window';
+import { quitWindow } from './modules/close';
 
 let win: CommonWindow | null = null;
 
 function createWindow(): void {
   // Create the browser window.
-  win = new AuthWindow()
-
-  // 模块
-  quitWindow();
+  win = WindowFactory.createWindow('auth')
 }
 
+// 注册事件
+quitWindow()
+
 // 切换窗口
-ipcMain.on('switch-window', (_event: IpcMainEvent, winType: ElectronWindowType) => {
+ipcMain.on('switch:window', (_event: IpcMainEvent, winType: ElectronWindowType) => {
   win = switchWindow(winType, win?.getWindow() as BrowserWindow);
+})
+
+let token: string | null = null
+ipcMain.handle('push:transfer:data', async (_event: IpcMainInvokeEvent, data: string) => {
+  token = data
+})
+ipcMain.handle('pull:transfer:data', async () => {
+  return token
 })
 
 // This method will be called when Electron has finished
