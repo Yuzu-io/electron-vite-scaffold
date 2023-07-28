@@ -18,7 +18,8 @@ export default class MainWindow extends CommonWindow {
         nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION as unknown as boolean,
         contextIsolation: !(process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
         preload: join(__dirname, '../preload/index.js'),
-        sandbox: false
+        sandbox: false,
+        webSecurity:false
       },
       windowType: ElectronWindowType.Main,
       loadUrl: (host) => `${host}/#/main`
