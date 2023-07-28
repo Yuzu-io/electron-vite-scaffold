@@ -22,7 +22,7 @@ export default class AuthWindow extends CommonWindow {
         sandbox: false
       },
       windowType: ElectronWindowType.Auth,
-      loadUrl: (host) => `${host}/auth`
+      loadUrl: (host) => `${host}/#/auth`
     })
   }
 }

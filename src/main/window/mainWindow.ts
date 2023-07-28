@@ -21,7 +21,7 @@ export default class MainWindow extends CommonWindow {
         sandbox: false
       },
       windowType: ElectronWindowType.Main,
-      loadUrl: (host) => `${host}/main.html`
+      loadUrl: (host) => `${host}/#/main`
     })
   }
 }
