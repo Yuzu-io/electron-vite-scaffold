@@ -12,19 +12,11 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer'),
+        '@renderer': resolve('src/renderer/src'),
         '@preload': resolve('src/preload'),
         '@main': resolve('src/main'),
       }
     },
     plugins: [vue()],
-    build: {
-      rollupOptions: {
-        input: {
-          main: resolve(__dirname, 'src/renderer/main.html'),
-          auth: resolve(__dirname, 'src/renderer/auth.html'),
-        }
-      }
-    }
   }
 })

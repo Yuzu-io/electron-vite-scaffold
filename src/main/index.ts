@@ -11,9 +11,15 @@ import { quitWindow } from './modules/close';
 
 let win: CommonWindow | null = null;
 
+const gotTheLock = app.requestSingleInstanceLock();
+if (!gotTheLock) {
+  app.exit();
+}
+
 function createWindow(): void {
   // Create the browser window.
   win = WindowFactory.createWindow('auth')
+  win.getWindow()?.webContents.openDevTools()
 }
 
 // 注册事件

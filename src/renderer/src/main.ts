@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './plugins/router';
 
 // 初始化样式
-import '../../../resources/reset.css';
+import './styles/reset.css';
 
 const app = createApp(App);
 
