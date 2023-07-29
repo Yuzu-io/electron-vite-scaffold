@@ -19,7 +19,6 @@ if (!gotTheLock) {
 function createWindow(): void {
   // Create the browser window.
   win = WindowFactory.createWindow('auth')
-  win.getWindow()?.webContents.openDevTools()
 }
 
 // 注册事件
