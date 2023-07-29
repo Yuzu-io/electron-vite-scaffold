@@ -20,10 +20,10 @@ export default class AuthWindow extends CommonWindow {
         contextIsolation: !(process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
         preload: join(__dirname, '../preload/index.js'),
         sandbox: false,
-        webSecurity:false
+        // webSecurity:false
       },
       windowType: ElectronWindowType.Auth,
-      loadUrl: (host) => `${host}/#/auth`
+      loadUrl: (host) => `${host}#auth`
     })
   }
 }

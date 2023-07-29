@@ -39,7 +39,7 @@ export default class CommonWindow {
         this.loadUrl(process.env['ELECTRON_RENDERER_URL'])
       } else {
         // 注意
-        this.win.loadFile(join(__dirname, `../renderer/index.html`))
+        this.loadUrl(join(__dirname, `../renderer/index.html`))
       }
       this.win?.on('close', () => {
         // 窗口退出时发送
